@@ -1,0 +1,5 @@
+com\project\pom\Base.class
+com\test\automation\Main.class
+com\project\pom\LoginPage.class
+com\project\pom\NavigateToAdminPage.class
+com\test\automation\TestAutomation.class
