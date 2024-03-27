@@ -3,8 +3,8 @@ package com.project.pom;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
 public class Base {
@@ -36,7 +36,7 @@ public class Base {
         return driver.findElement(locator).getText();
     }
 
-    public void type(String inputText, By locator){
+    public void escribir(String inputText, By locator){
         driver.findElement(locator).sendKeys(inputText);
     }
     public void click(By locator){
@@ -55,8 +55,8 @@ public class Base {
         driver.get(url);
     }
 
-    public void waitForItem(By locator){
-        WebDriverWait ewait = new WebDriverWait(driver,10);
+    public void waitForItem(By locator, int time){
+        WebDriverWait ewait = new WebDriverWait(driver,time);
         ewait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
     public void scrollY(int cant){
@@ -76,5 +76,15 @@ public class Base {
             }
         }
         return isLocate;
+    }
+    public String selectOption(int option,By locator){
+        Select optionSelect = new Select(finElemet(locator));
+        optionSelect.selectByIndex(option);
+        System.out.println(getText(optionSelect.getFirstSelectedOption()));
+        return getText(optionSelect.getFirstSelectedOption());
+    }
+    
+    public void borrar(By locator){
+        driver.findElement(locator).clear();
     }
 }
