@@ -3,51 +3,55 @@ package com.project.pom;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.project.pom.tests.Vehiculos;
+import com.project.pom.tests.Vuelos;
+import com.project.pom.tests.Hoteles;
 import org.openqa.selenium.WebDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class Main {
     static WebDriver driver;
-    static Test1 init1;
-    static Test2 init2;
+    static Vuelos vuelos;
+    static Hoteles hoteles;
+    static Vehiculos vehiculos;
     public static void main (String[] args){
-        firtsTest();
+        menuTest();
     }
 
 
 
-    public static void firtsTest(){
+    public static void menuTest(){
         Scanner scanner = new Scanner(System.in);
         int option;
-
         do{
-            
+            System.out.println("////Menú principal////");
             System.out.println("1) Vuelos");
             System.out.println("2) Hotel");
+            System.out.println("3) Vehiculos");
             System.out.println("0) Salir");
             System.out.print("Ingrese una opción: ");
             option = scanner.nextInt();
             switch(option){
                 case 1:
-                        try {
-                            init1 = new Test1(driver);
-                            driver = init1.cromeDriverConection();
-                            init1.visit("https://ideas.kontroltravel.com/");
-                            init1.selectAndinsertData();
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    vuelos = new Vuelos(driver);
+                    driver = vuelos.cromeDriverConection();
+                    vuelos.visit("https://ideas.kontroltravel.com/");
+                    vuelos.selectAndinsertData();
                     break;
                 case 2:
-                        try {
-                            init2 = new Test2(driver);
-                            driver = init2.cromeDriverConection();
-                            init2.visit("https://ideas.kontroltravel.com/");
-                            init2.selectAndinsertData();
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    hoteles = new Hoteles(driver);
+                    driver = hoteles.cromeDriverConection();
+                    hoteles.visit("https://ideas.kontroltravel.com/");
+                    hoteles.selectAndinsertData();
+                    break;
+
+                case 3:
+                    vehiculos = new Vehiculos(driver);
+                    driver = vehiculos.cromeDriverConection();
+                    vehiculos.visit("https://ideas.kontroltravel.com/");
+                    vehiculos.selectAndinsertData();
                     break;
             }
             

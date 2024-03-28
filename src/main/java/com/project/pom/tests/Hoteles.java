@@ -1,14 +1,14 @@
 
-package com.project.pom;
+package com.project.pom.tests;
 
+import com.project.pom.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Test2 extends Base{
+public class Hoteles extends Base {
     
     //Selectores login
     private By username = By.id("userName");
-    private By boton = By.id("");
     private By password = By.id("password");
     private By loginButton = By.id("btnLoginBoxAccept");
     
@@ -56,16 +56,18 @@ public class Test2 extends Base{
     //Seleccionadores Reserva
     private By reservar = By.xpath("(//*[@class='btn btn-primary btn-lg searchButton pull-right'])[1]");
     
-    public Test2(WebDriver driver) {
+    public Hoteles(WebDriver driver) {
         super(driver);
     }
     
-    public void selectAndinsertData() throws InterruptedException{
+    public void selectAndinsertData(){
+
+        try {
             //Login
             escribir("fer.salazar",this.username);
             escribir("1234Godie1987*",this.password);
             click(this.loginButton);
-            
+
             //Elegir y rellenar opción Hotel
             waitForItem(this.opcionHotel,120);
             click(this.opcionHotel);
@@ -80,30 +82,35 @@ public class Test2 extends Base{
             selectOption(0,this.selectHabitacionAdultos);
             selectOption(1,this.selectHabitacionesNinhos);
             selectOption(7,this.edadNinhos);
-            
-            
-        //OPCIONALES
-        //Seleccionar checkBoxes:
+
+
+            //OPCIONALES
+            //Seleccionar checkBoxes:
 
             //click(this.proovedor);
             //click(this.tboholidays);
             //click(this.apitude);
-            
-            
-        //inputs de codigo postal, nombre hotel y dirección
-           //escribir("0000",this.codigoPostal);
-           //escribir("California",this.nombreHotel);
-           //escribir("Carrera x # x-x",this.direccion);
-           
-           
-          click(this.buscarButton);
-          try{
-              waitForItem(this.btoDetalle, 120);
-              waitForItem(this.reservar, 120);
-              click(this.reservar);
-          }catch(ArithmeticException  e){
-              System.out.println("No hay disponibilidad");
-          }
+
+
+            //inputs de codigo postal, nombre hotel y dirección
+            //escribir("0000",this.codigoPostal);
+            //escribir("California",this.nombreHotel);
+            //escribir("Carrera x # x-x",this.direccion);
+
+
+            click(this.buscarButton);
+            try{
+                waitForItem(this.btoDetalle, 120);
+                waitForItem(this.reservar, 120);
+                click(this.reservar);
+            }catch(ArithmeticException  e){
+                System.out.println("No hay disponibilidad");
+            }
+            System.out.println("////Test finalizado////");
+        }catch (ArithmeticException e){
+            System.out.println("////Error en la ejecución del test////");
+        }
+
 
     }
     

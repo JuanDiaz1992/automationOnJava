@@ -42,6 +42,13 @@ public class Base {
     public void click(By locator){
         driver.findElement(locator).click();
     }
+    public void clickElementList(int position, By locator){
+        List<WebElement> elementos = driver.findElements(locator);
+        WebElement primerElemento = elementos.get(position);;
+        System.out.println(primerElemento);
+        primerElemento.click();
+
+    }
 
     public Boolean isDisplayed(By locator){
         try {
@@ -58,6 +65,13 @@ public class Base {
     public void waitForItem(By locator, int time){
         WebDriverWait ewait = new WebDriverWait(driver,time);
         ewait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+    public void esperaEspecifica(int milisegundos){
+        try {
+            Thread.sleep(milisegundos);
+        } catch (InterruptedException e) {
+            System.out.println("Error");
+        }
     }
     public void scrollY(int cant){
         Dimension windowSize = driver.manage().window().getSize();
@@ -83,6 +97,7 @@ public class Base {
         System.out.println(getText(optionSelect.getFirstSelectedOption()));
         return getText(optionSelect.getFirstSelectedOption());
     }
+
     
     public void borrar(By locator){
         driver.findElement(locator).clear();

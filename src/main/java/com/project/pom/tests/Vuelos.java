@@ -1,12 +1,12 @@
-package com.project.pom;
+package com.project.pom.tests;
 
+import com.project.pom.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Test1 extends Base{
+public class Vuelos extends Base {
     //Selectores login
     private By username = By.id("userName");
-    private By boton = By.id("");
     private By password = By.id("password");
     private By loginButton = By.id("btnLoginBoxAccept");
 
@@ -26,6 +26,22 @@ public class Test1 extends Base{
     private By cabina = By.id("Cabine_searchBox_flights_div");
     private By moneda = By.id("Currency_searchBox_flights_div");
     private By buttonSearch = By.id("btnSearchByPrice_searchBox_flights_div");
+
+    //Cias Aéreas
+    private By ciasAereas = By.id("allCias_searchBox_flights_div");
+    private By amadeus = By.id("Source_amadeusws_1243");
+    private By avianca = By.id("Source_aviancandc_2864");
+    private By conviasa = By.id("Source_conviasa_2703");
+    private By copa = By.id("Source_copandc_2241");
+    private By estelar = By.id("Source_estelar_2738");
+    private By gcaAirlines = By.id("Source_gca_1767");
+    private By iberia = By.id("Source_iberiandc_2843");
+    private By laser = By.id("Source_laser_1680");
+    private By latamNdc = By.id("Source_latamndc_2506");
+    private By rutaca = By.id("Source_rutaca_2785");
+    private By sabre = By.id("Source_sabre_1875");
+    private By satena = By.id("Source_satena_1259");
+
     
     //selectores agendar
     
@@ -35,11 +51,11 @@ public class Test1 extends Base{
 
 
 
-    public Test1(WebDriver driver) {
+    public Vuelos(WebDriver driver) {
         super(driver);
     }
 
-    public void selectAndinsertData() throws InterruptedException {
+    public void selectAndinsertData(){
         
         
         try {
@@ -56,7 +72,7 @@ public class Test1 extends Base{
             waitForItem(option1,20);
             click(option1);
             escribir("01-12-2024",this.inputFecha);
-        selectOption(2, this.horario1);
+            selectOption(2, this.horario1);
             escribir("MAD",this.inputDestino);
             Thread.sleep(1000);
             click(option2);
@@ -67,7 +83,18 @@ public class Test1 extends Base{
             selectOption(2,this.selectBabys);
             selectOption(1,this.cabina);
             selectOption(1,this.moneda);
+
+            //Seleccionar CIAS
+            waitForItem(this.ciasAereas,120);
+            click(this.ciasAereas);
+            click(this.avianca);
+
+
+
+            //Botón buscar
             click(this.buttonSearch);
+
+
 
             //Agendar Vuelo
             waitForItem(this.butonSelect,120);
@@ -76,10 +103,11 @@ public class Test1 extends Base{
             click(this.butonreserve);
             waitForItem(this.buttonAceptar,120);
             click(this.buttonAceptar);
-            System.out.println("Prueba exitosa");
+            System.out.println("////Test finalizado////\n");
+
             
         }catch (Exception e){
-            System.out.println("Error al ejecutar el test");
+            System.out.println("////Error al ejecutar el test////");
         }
 
         
